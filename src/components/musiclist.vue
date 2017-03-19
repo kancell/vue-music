@@ -32,6 +32,12 @@ export default {
 			this.musicList = res.data.cdlist[0]
 		})		
 	},
+	activated () {
+		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
+			this.musicList = res.data.cdlist[0]
+		})
+	},
+	//activated 用于重新进行事件响应，不被keep-alive缓存
 	methods: {
 		musicSelect(item){
 			this.$store.state.nowPlaying = item
