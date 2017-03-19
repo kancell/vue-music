@@ -18,8 +18,11 @@ const actions = {
     getRankSongs({commit}, id){
         return apiService(API.rank_songs)(id)
     },
-    getRecommands({}){
+    getRecommands({commit}){
         return apiService(API.first_page_data)()
+    },
+    getCDList({commit}, id){
+        return apiService(API.cd)(id)
     }
 }
 
