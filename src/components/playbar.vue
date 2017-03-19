@@ -5,7 +5,7 @@
             :src="dataUrl"
             @timeupdate="updateTime"
             @ended="playContinue"
-            autoplay
+            
             ></audio>
         <!--<div class="play-bar-image-container" @touchstart="showPlayPage" @click="showPlayPage">
         <img class="play-bar-image" v-lazy="coverImgUrl">
@@ -29,9 +29,9 @@ export default {
         }
 	},
 	mounted () {
-		this.$store.dispatch('getRecommands').then((response) => {
+		/*this.$store.dispatch('getRecommands').then((response) => {
 			 console.log(response)
-		})
+		})*/
 	},
 	methods: {
 		updateTime(event) {

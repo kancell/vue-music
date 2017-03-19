@@ -6,7 +6,7 @@ import store from './vuex/index.js'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-Vue.config.productionTip = false
+
 
 new Vue({
     el: '#app',

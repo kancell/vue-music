@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import recommand from './components/recommand.vue'
 import playBar from './components/playbar.vue'
 export default {
 	data () {
@@ -14,10 +15,16 @@ export default {
         }
 	},
 	components: {
-		playBar
+		playBar,
+		recommand
 	},
 	created () {
 
+	},
+	mounted () {
+		this.$store.dispatch('getRecommands').then((response) => {
+			 
+		})
 	},
 	methods: {
 		
