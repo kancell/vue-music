@@ -40,8 +40,10 @@ export default {
 	//activated 用于重新进行事件响应，不被keep-alive缓存
 	methods: {
 		musicSelect(item){
+			//直接修改state是否合适？
 			this.$store.state.nowPlaying = item
 			this.$store.commit('play')
+			this.$store.dispatch('albummid' ,item.mid)
 		}
 	}
 }
