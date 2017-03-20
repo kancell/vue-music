@@ -6,8 +6,6 @@ import store from './vuex/index.js'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-
-
 new Vue({
     el: '#app',
     router,

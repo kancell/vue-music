@@ -72,42 +72,38 @@ export default {
 
 <style>
 #play-bar {
-position: fixed;
-bottom: 0;
-width: 100%;
-height: 50px;
-background: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-z-index: 2;
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	background: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 2;
 }
 
 .play-bar-image-container {
-width: 37.5px;
-height: 37.5px;
-padding-left: 15px;
-cursor: pointer;
+	width: 37.5px;
+	height: 37.5px;
+	padding-left: 15px;
+	cursor: pointer;
 }
-
 .play-bar-image {
-width: 37.5px;
-height: 37.5px;
-border-radius: 5px;
-display: inline-block;
+	width: 37.5px;
+	height: 37.5px;
+	border-radius: 5px;
+	display: inline-block;
 }
-
 .play-bar-text {
-flex-grow: 1;
-padding-left: 10px;
-cursor: pointer;
+	flex-grow: 1;
+	padding-left: 10px;
+	cursor: pointer;
 }
-
 .play-bar-button {
-width: 20px;
-height: 20px;
-padding-right: 15px;
-cursor: pointer;
+	width: 20px;
+	height: 20px;
+	padding-right: 15px;
+	cursor: pointer;
 }
 </style>

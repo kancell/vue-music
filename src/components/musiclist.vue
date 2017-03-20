@@ -1,7 +1,8 @@
 <template>
 	<div id="music-list">
 		<ul>
-			<li v-for="(item, index) in musicList.songlist"
+			<li class="music-item"
+				v-for="(item, index) in musicList.songlist"
 				@click="musicSelect(item)"
 				>
 				<div class="music-info">
@@ -49,4 +50,13 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+#music-list {
+	background: #fff;
+}
+#music-list .music-item{
+	margin: 5px 0 0 5px;
+}
+#music-list li:nth-child(2n){
+	background: gainsboro
+}
 </style>
