@@ -1,20 +1,23 @@
 <template>
-    <div id="play-bar" v-show="1">
-        <audio id="music"
-            ref="music"
-            :src='nowPlaySrc'
-            @timeupdate="updateTime"
-            @ended="playContinue"
-            ></audio>
-		<div class="play-bar-image-container">
-        	<img class="play-bar-image" :src="nowPlayInfo[1]">
-        </div>
-        <p class="play-bar-text">{{nowPlayInfo[0]}}</p>
-        <img class="play-bar-button"
-            :src="playState?iconPause:iconPlay"
-            @click="tapButton"
-			>
-  	</div>
+	<div>
+		<div id="play-bar" v-show="1">
+			<audio id="music"
+				ref="music"
+				:src='nowPlaySrc'
+				@timeupdate="updateTime"
+				@ended="playContinue"
+				></audio>
+			<div class="play-bar-image-container">
+				<img class="play-bar-image" :src="nowPlayInfo[1]">
+			</div>
+			<p class="play-bar-text">{{nowPlayInfo[0]}}</p>
+			<img class="play-bar-button"
+				:src="playState?iconPause:iconPlay"
+				@click="tapButton"
+				>
+		</div>
+		<div id="sub-bar"></div>
+	</div>
 </template>
 
 <script>
@@ -82,7 +85,9 @@ export default {
 	align-items: center;
 	z-index: 2;
 }
-
+#sub-bar{
+	height: 50px;
+}
 .play-bar-image-container {
 	width: 37.5px;
 	height: 37.5px;

@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 const state = {
     playState: false,
+    showState: false,
     nowPlaying: '',
     playList: [],
     defImg: '../assets/Vue_Music_Blur.png',
@@ -23,6 +24,9 @@ const mutations = {
     },
     albummid(state, data){
         state.albumImg = data
+    },
+    show(state){
+        state.showState = !state.showState
     }
 }
 
@@ -43,6 +47,9 @@ const getters = {
     },
     playState: state => {
         return state.playState
+    },
+    showState: state => {
+        return state.showState
     }
 }
 //state,mutations,action等分模块处理

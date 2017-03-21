@@ -21,6 +21,7 @@
 	</div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
 	name: "musiclist",
 	data () {
@@ -28,15 +29,22 @@ export default {
 			musicList:[]
 		}
 	},
-	created	() {
+	beforeCreated () {
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
 			this.musicList = res.data.cdlist[0]
 		})		
+		//this.$store.commit('show')
+		document.body.scrollTop = 0
+	},
+	destroyed () {
+		//this.$store.commit('show')
 	},
 	activated () {
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
 			this.musicList = res.data.cdlist[0]
 		})
+		document.body.scrollTop = 0
+		//this.$store.commit('show')
 	},
 	//activated 用于重新进行事件响应，不被keep-alive缓存
 	methods: {

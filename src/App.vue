@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import recommand from './components/recommand.vue'
 import playBar from './components/playbar.vue'
 export default {
@@ -20,6 +21,9 @@ export default {
 		playBar,
 		recommand
 	},
+	/*computed: {
+		...mapGetters(['showState'])
+	},*/
 	created () {
 
 	},

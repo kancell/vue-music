@@ -3,6 +3,7 @@
 		<div class="hot-list">
 			<div class="list-item" 
 				v-for="(item,index) in songList"
+				@click="changeShow"
 				>
 				<router-link :to="{name: 'musiclist', params:{id: item.dissid}}">
 					<!--命名路由，通过route.params获取参数，通过name属性定位，不能用path-->
@@ -23,19 +24,31 @@
 	</div>
 </template>
 <script>
-    export default {
-		name: 'recommand',
-        data () {
-            return {
-                songList:[]
-            }
-        },
-		mounted () {
-			this.$store.dispatch('getRecommands').then((res) => {
-				this.songList = res.data.data.hotdiss.list
-			})
+//import { mapGetters } from 'vuex'
+export default {
+	name: 'recommand',
+	data () {
+		return {
+			songList:[]
 		}
-    }
+	},
+	/*computed: {
+		...mapGetters(['showState'])
+	},*/
+	created () {
+		this.$store.dispatch('getRecommands').then((res) => {
+			this.songList = res.data.data.hotdiss.list
+		})
+	},
+	destroyed () {
+
+	},
+	methods: {
+		changeShow (){
+			
+		}
+	}
+}
 </script>
 <style>
 .hot-list {
