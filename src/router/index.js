@@ -7,7 +7,7 @@ import musiclist from '@/components/musiclist'
 Vue.use(Router)
 const routes =  [
 		{
-			path: '*',
+			path: '/',
 			name: 'recommand',
 			component: recommand
 		},

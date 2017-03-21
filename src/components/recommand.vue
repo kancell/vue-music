@@ -1,13 +1,13 @@
 <template>
-	<div id="recommand">
+	<div id="recommand">	
 		<div class="hot-list">
 			<div class="list-item" 
 				v-for="(item,index) in songList"
-				@click="changeShow"
 				>
 				<router-link :to="{name: 'musiclist', params:{id: item.dissid}}">
 					<!--命名路由，通过route.params获取参数，通过name属性定位，不能用path-->
-					<div class="list-img">
+					<div class="list-img"
+						@click="scrollbar">
 						<img :src="item.imgurl">
 						<div class="listen-count">
 							<img src="../assets/icon-erji.svg" alt="">
@@ -32,22 +32,20 @@ export default {
 			songList:[]
 		}
 	},
-	/*computed: {
-		...mapGetters(['showState'])
-	},*/
 	created () {
 		this.$store.dispatch('getRecommands').then((res) => {
 			this.songList = res.data.data.hotdiss.list
 		})
 	},
-	destroyed () {
-
+	activated () {
+		document.body.scrollTop = this.$store.state.scrollbar
 	},
 	methods: {
-		changeShow (){
-			
+		scrollbar () {
+			this.$store.state.scrollbar = document.body.scrollTop
 		}
 	}
+	//滚动条进度存入vuex中，返回时读取并使用，因为冒泡，点击事件必须写在具体元素中
 }
 </script>
 <style>

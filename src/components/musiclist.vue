@@ -1,5 +1,8 @@
 <template>
 	<div id="music-list">
+		<div class="previous" @click="previous" ref="previous">
+
+		</div>
 		<ul>
 			<li class="music-item"
 				v-for="(item, index) in musicList.songlist"
@@ -33,21 +36,21 @@ export default {
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
 			this.musicList = res.data.cdlist[0]
 		})		
-		//this.$store.commit('show')
 		document.body.scrollTop = 0
 	},
 	destroyed () {
-		//this.$store.commit('show')
 	},
 	activated () {
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
 			this.musicList = res.data.cdlist[0]
 		})
 		document.body.scrollTop = 0
-		//this.$store.commit('show')
 	},
 	//activated 用于重新进行事件响应，不被keep-alive缓存
 	methods: {
+		previous (){
+			this.$router.push('/')
+		},
 		musicSelect(item){
 			//直接修改state是否合适？
 			this.$store.state.nowPlaying = item
@@ -66,5 +69,8 @@ export default {
 }
 #music-list li:nth-child(2n){
 	background: gainsboro
+}
+.previous{
+	height: 20px;
 }
 </style>
