@@ -1,5 +1,6 @@
 <template>
 	<div id="recommand">	
+		<searchbar></searchbar>
 		<div class="hot-list">
 			<div class="list-item" 
 				v-for="(item,index) in songList"
@@ -25,12 +26,16 @@
 </template>
 <script>
 //import { mapGetters } from 'vuex'
+import searchbar from './searchbar.vue'
 export default {
 	name: 'recommand',
 	data () {
 		return {
 			songList:[]
 		}
+	},
+	components: {
+		searchbar
 	},
 	created () {
 		this.$store.dispatch('getRecommands').then((res) => {
@@ -48,7 +53,7 @@ export default {
 	//滚动条进度存入vuex中，返回时读取并使用，因为冒泡，点击事件必须写在具体元素中
 }
 </script>
-<style>
+<style lang="css" scoped>
 .hot-list {
 	display: flex;
 	background: #fff;
@@ -69,18 +74,18 @@ export default {
 	flex-direction: row;
 	flex-wrap: wrap;
 }*/
-.list-item {
+.hot-list  .list-item {
 	display: flex;
 	width: 50%;
 	cursor: pointer;
 }
-.list-item .list-img{
+.hot-list .list-item .list-img{
 	position: relative;
 }
-.list-item .list-img img{
+.hot-list .list-item .list-img img{
 	width: 100%;
 }
-.list-item .listen-count {
+.hot-list .list-item .listen-count {
 	position: absolute;
 	bottom: 5px;
 	left: 5px;
@@ -90,17 +95,16 @@ export default {
 	flex-direction: row;
 	align-items: center;
 }   
-.list-item .listen-count img{
+.hot-list .list-item .listen-count img{
 	width: 15px;
 	height: 15px;
 	display: inline-block;
 	margin-right: 3px;
 }    
-.list-info {
+.hot-list .list-info {
 	padding: 0 5px;
 	font-weight: 300;
 	font-size: 14px;
 	margin-bottom: 10px;
-}
-        
+}  
 </style>

@@ -16,7 +16,7 @@
 				@click="tapButton"
 				>
 		</div>
-		<div id="sub-bar"></div>
+		<div class="sub-bar"></div>
 	</div>
 </template>
 
@@ -32,7 +32,12 @@ export default {
 	},
 	computed: {
 		...mapGetters(['nowPlaySrc','nowPlayInfo','playState']),
-		...mapMutations(['play', 'pause'])
+		...mapMutations(['play', 'pause']),
+		defaultIcon (){
+			if(this.nowPlayInfo[1] == undefined){
+				return '../assets/Vue_Music_Blur.png'
+			}
+		}
 		//将vuex中属性映射至组件中，通过getter获取状态，mutations更改状态
 
 	},
@@ -57,7 +62,9 @@ export default {
 		//	console.log(event.target.currentTime)
 		},
 		playContinue(event){
-			console.log(event.target.ended)
+			this.$store.commit('pause')
+			this.$store.commit('play')
+			this.$refs.music.play()
 		},
 		tapButton(event){		
 			if(this.playState){
@@ -73,7 +80,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css" scoped>
 #play-bar {
 	position: fixed;
 	bottom: 0;
@@ -85,7 +92,7 @@ export default {
 	align-items: center;
 	z-index: 2;
 }
-#sub-bar{
+.sub-bar{
 	height: 50px;
 }
 .play-bar-image-container {

@@ -1,8 +1,6 @@
 <template>
 	<div id="music-list">
-		<div class="previous" @click="previous" ref="previous">
-
-		</div>
+		<searchbar></searchbar>
 		<ul>
 			<li class="music-item"
 				v-for="(item, index) in musicList.songlist"
@@ -24,6 +22,7 @@
 	</div>
 </template>
 <script>
+import searchbar from './searchbar.vue'
 import { mapGetters } from 'vuex'
 export default {
 	name: "musiclist",
@@ -31,6 +30,9 @@ export default {
 		return {
 			musicList:[]
 		}
+	},
+	components: {
+		searchbar
 	},
 	beforeCreated () {
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
@@ -49,7 +51,7 @@ export default {
 	//activated 用于重新进行事件响应，不被keep-alive缓存
 	methods: {
 		previous (){
-			this.$router.push('/')
+			this.$router.go(-1)
 		},
 		musicSelect(item){
 			//直接修改state是否合适？
@@ -70,7 +72,5 @@ export default {
 #music-list li:nth-child(2n){
 	background: gainsboro
 }
-.previous{
-	height: 20px;
-}
+
 </style>
