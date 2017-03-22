@@ -16,7 +16,6 @@
         <div class="sub-bar"></div>
     </div>
 </template>
-
 <script>
 export default {
     name: 'searchbar',
@@ -31,12 +30,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 #search-bar {
 	display: flex;
     position: fixed;
+
     top: 0;
-    width: 47%;
     z-index: 10;
     justify-content: space-between;
 	background: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
@@ -59,6 +58,6 @@ export default {
 	margin: 6px;	
 }
 .sub-bar{
-	height: 36px;
+	height: 35px;
 }  
 </style>

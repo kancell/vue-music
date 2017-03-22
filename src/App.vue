@@ -44,9 +44,9 @@ export default {
 	padding: 0;
 }
 @media screen and (min-width: 68vh){
-	#play-bar, body {
-    width: 68vh;
-	margin: 0 auto
+	#play-bar, #search-bar, body, #app{
+		width: 68vh;
+		margin: 0 auto
 	}
 }
 html {
@@ -54,7 +54,7 @@ html {
 	background: #EEEEEE;
 }
 body {
-	display: flex;
+
 	overflow-x: hidden;
 }
 #app {
