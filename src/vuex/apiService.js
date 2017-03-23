@@ -33,7 +33,10 @@ const actions = {
         }).then((response) => {
             commit('albummid', response.data.albummid)
         })     
-    }
+    },
+    getHotKey({commit}){
+        return apiService(API.hotkey)()
+    },
 }
 
 export default actions
