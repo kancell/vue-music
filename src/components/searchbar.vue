@@ -30,7 +30,7 @@ export default {
             this.$router.go(-1)
         },
         search () {
-            this.$router.push('search')
+            this.$router.push({name:'search'})
         }
     }
 }
@@ -40,14 +40,10 @@ export default {
 #search-bar {
 	display: flex;
     position: fixed;
-
     top: 0;
     z-index: 10;
     justify-content: space-between;
-	background: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
-	background: -moz-linear-gradient(#f9f9f9, #f3f3f3);
-	background: -o-linear-gradient(#f9f9f9, #f3f3f3);
-	background: linear-gradient(#f9f9f9, #f3f3f3);
+	background: whitesmoke
 }  
 #search-bar div {
     display: flex;

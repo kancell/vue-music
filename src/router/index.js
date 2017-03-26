@@ -17,7 +17,9 @@ const routes =  [
 			name: 'musiclist',
 			component: musiclist
 		},
-		{ 	path: '/search', 
+		{ 	
+			path: '/search', 
+			name: 'search',
 			component: search
 		}
 		
