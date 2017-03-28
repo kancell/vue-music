@@ -37,6 +37,9 @@ const actions = {
     getHotKey({commit}){
         return apiService(API.hotkey)()
     },
+    search({}, key){
+        return apiService(API.search)(key)
+    },
 }
 
 export default actions

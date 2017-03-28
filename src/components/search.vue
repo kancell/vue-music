@@ -1,14 +1,20 @@
+
 <template>
 	<div id="search">
 		<div class="search-input">
 			<img src="./../assets/icon-search.png" alt="搜索">
 			<form>
-			<input type="text"
-					placeholder="搜索 歌曲/专辑/歌手"
-					>
-			</form>
+				<input type="text"
+						placeholder="搜索 歌曲/专辑/歌手"
+						v-model="key"
+						>
+			</form>		
 		</div>
-		<div class="hotkey">
+		<div class="search-cacel">
+			<p @click="search">搜索</p>
+			<p @click="cacel">取消</p>
+		</div>
+		<div class="hot-key" v-if="!searchState">
 			<ul>
 				<li v-for="(item,index) in hotkey">
 					<span class="hotkey-index">{{index +1}}</span>
@@ -16,6 +22,24 @@
 					<span>{{item.n}}</span>
 				</li>
 			</ul>
+		</div>
+		<div v-if="searchState">
+			<div class="hot-key">
+				{{searchResult.song.name}}
+				<ul>
+					<li v-for="(item,index) in searchResult.song.itemlist">
+						{{item.name}}
+					</li>
+				</ul>
+			</div>
+			<div class="hot-key">
+				{{searchResult.mv.name}}
+				<ul>
+					<li v-for="(item,index) in searchResult.mv.itemlist">
+						{{item.name}}
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </template>
@@ -26,6 +50,9 @@ export default {
 	data () {
 		return {
 			hotkey:'',
+			key:'',
+			searchResult:'',
+			searchState:false
 		};
 	},
 	computed: {
@@ -34,9 +61,21 @@ export default {
 	created () {
 		this.$store.dispatch('getHotKey').then((response) => {
 			this.hotkey = response.data.data.hotkey.slice(0, 5)
-			console.log(this.hotkey)
 		})
 	},
+	methods: {
+		cacel () {
+			this.$router.go(-1)
+		},
+		search () {
+			this.$store.dispatch('search', this.key).then((res) => {
+				this.searchResult = res.body.data
+				this.searchState = !this.searchState
+			}, (error) => {{
+				this.searchResult = '！未找到'
+			}})
+		}
+	}
 }
 </script>
 <style lang="css" scoped>
@@ -50,7 +89,7 @@ export default {
 	flex-wrap:wrap
 }
 .search-input {
-	width: 100%;
+	flex-grow: 1;
 	background: #eee;
 	border-radius: 5px;
 	margin: 10px;
@@ -58,7 +97,13 @@ export default {
 	flex-direction: row;
 	align-items: center;
 }
-
+.search-cacel {
+	display: flex;
+	align-items: center
+}
+.search-cacel p{
+	margin: 5px 10px 5px 1px;
+}
 .search-input img {
 	height: 30px;
 	width: 30px;
@@ -76,7 +121,7 @@ export default {
 	border-radius: 5px;
 	outline: none;
 }
-.hotkey {
+.hot-key {
 	margin-bottom: 50px;
 	background: #eeeeee;
 	display: flex;
@@ -84,13 +129,13 @@ export default {
 	width: 100%;
 }
 
-.hotkey ul {
+.hot-key ul {
 	list-style: none;
 	background: #fff;
 	display: flex;
 	flex-direction: column;
 }
-.hotkey ul li {
+.hot-key ul li {
 	height: 40px;
 	display: flex;
 	flex-direction: row;
@@ -99,10 +144,10 @@ export default {
 	padding: 0 10px;
 	cursor: pointer;
 }
-.hotkey ul li .hotkey-index {
+.hot-key ul li .hotkey-index {
 	padding-right: 10px;
 }
-.hotkey ul li .hotkey-k {
+.hot-key ul li .hotkey-k {
 	flex-grow: 1;
 }
 </style>
