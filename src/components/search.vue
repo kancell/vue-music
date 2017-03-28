@@ -23,7 +23,7 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="searchState">
+		<div v-if="searchState" class="result-warp">
 			<div class="hot-key">
 				{{searchResult.song.name}}
 				<ul>
@@ -65,15 +65,43 @@ export default {
 	},
 	methods: {
 		cacel () {
+			this.key = ''
+			this.searchState = false
 			this.$router.go(-1)
+		},
+		check (res) {
+			const notdound = {
+				mv:{
+					name:'MV',
+					itemlist:[{name:'未找到'}]
+				},
+				song:{
+					name:'单曲',
+					itemlist:[{name:'未找到'}]
+				}
+			}
+			console.log(res)
+			if(res.body.code == -4){
+				this.searchResult = notdound
+				this.searchState = true
+			}
+			else if(JSON.stringify(res.body.data) == '{}'){
+
+				this.searchResult = notdound
+				this.searchState = true
+			}
+			else{
+				this.searchResult = res.body.data
+				this.searchState = true
+			}
 		},
 		search () {
 			this.$store.dispatch('search', this.key).then((res) => {
-				this.searchResult = res.body.data
-				this.searchState = !this.searchState
-			}, (error) => {{
+				this.check(res)
+			}, (error) => {
+				console.log(res)
 				this.searchResult = '！未找到'
-			}})
+			})
 		}
 	}
 }
@@ -149,5 +177,8 @@ export default {
 }
 .hot-key ul li .hotkey-k {
 	flex-grow: 1;
+}
+.result-warp{
+	width: 100%
 }
 </style>
