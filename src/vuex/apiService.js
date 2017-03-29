@@ -10,6 +10,7 @@ function apiService(api){
         jsonp: api.jsonp
     })
 }
+//axios不支持jsonp，我也很绝望啊
 //处理异步请求，第一个参数为api，第二个参数为id，传入箭头函数中，默认为null
 const actions = {
     test ({commit}) {
@@ -34,6 +35,7 @@ const actions = {
             commit('albummid', response.data.albummid)
         })     
     },
+    //提交入mutations中以备再次处理
     getHotKey({commit}){
         return apiService(API.hotkey)()
     },

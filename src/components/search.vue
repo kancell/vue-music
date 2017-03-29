@@ -16,7 +16,7 @@
 		</div>
 		<div class="hot-key" v-if="!searchState">
 			<ul>
-				<li v-for="(item,index) in hotkey">
+				<li v-for="(item,index) in hotkey" @click="hotSelect(item)">
 					<span class="hotkey-index">{{index +1}}</span>
 					<span class="hotkey-k">{{item.k}}</span>
 					<span>{{item.n}}</span>
@@ -27,7 +27,9 @@
 			<div class="hot-key">
 				{{searchResult.song.name}}
 				<ul>
-					<li v-for="(item,index) in searchResult.song.itemlist">
+					<li v-for="(item,index) in searchResult.song.itemlist"
+						@click="musicSelect(item)"
+					>
 						{{item.name}}
 					</li>
 				</ul>
@@ -64,6 +66,17 @@ export default {
 		})
 	},
 	methods: {
+		hotSelect (item) {
+			this.key = item.k
+			this.search ()
+		},
+		musicSelect (item) {
+			this.$store.state.nowPlaying = item
+			this.$store.commit('play')
+			this.$store.dispatch('albummid' ,item.mid)
+		},
+		//向vuex提交包含歌曲信息的object，并调用开始播放方法，在组件playbar中响应
+		//和musiclist中的逻辑相同，可以做一些优化
 		cacel () {
 			this.key = ''
 			this.searchState = false
@@ -80,13 +93,11 @@ export default {
 					itemlist:[{name:'未找到'}]
 				}
 			}
-			console.log(res)
 			if(res.body.code == -4){
 				this.searchResult = notdound
 				this.searchState = true
 			}
 			else if(JSON.stringify(res.body.data) == '{}'){
-
 				this.searchResult = notdound
 				this.searchState = true
 			}
@@ -94,6 +105,7 @@ export default {
 				this.searchResult = res.body.data
 				this.searchState = true
 			}
+			//检查数据，如果数据为空，则显示已编好的错误信息
 		},
 		search () {
 			this.$store.dispatch('search', this.key).then((res) => {

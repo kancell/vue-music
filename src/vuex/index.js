@@ -42,10 +42,8 @@ const getters = {
 		if(state.albumImg == undefined || null){
 			return [state.nowPlaying.name, state.defImg]
 		}
-        console.log(state.albumImg == undefined || state.albumImg == null)
         //可能出现null或undefined，都为错误，故不使用 ===
         return [state.nowPlaying.name, "https://y.gtimg.cn/music/photo_new/T002R500x500M000"+state.albumImg+".jpg"]
-        //retturn三目运算符行不通
     },
     playState: state => {
         return state.playState
