@@ -11,6 +11,10 @@
 						{{item.name}}
 					</div>
 					<div class="music-singer">
+						<span v-for="(sub, index) in item.singer">
+							{{sub.name}}
+						</span>
+						<span>-</span>
 						<span v-for="(sub, index) in item">
 							{{sub.title}}
 						</span>
@@ -72,5 +76,10 @@ export default {
 #music-list li:nth-child(2n){
 	background: gainsboro
 }
-
+.music-info {
+	font-size: 14px;
+}
+.music-singer {
+	font-size: 5px;
+}
 </style>

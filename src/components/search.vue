@@ -24,13 +24,18 @@
 			</ul>
 		</div>
 		<div v-if="searchState" class="result-warp">
-			<div class="hot-key">
+			<div class="hot-key list">
 				{{searchResult.song.name}}
 				<ul>
 					<li v-for="(item,index) in searchResult.song.itemlist"
 						@click="musicSelect(item)"
+						class="result"
 					>
-						{{item.name}}
+						<span class="hotkey-index">{{index +1}}</span>
+						<div class="key-info">
+							<span class="hotkey-k">{{item.name}}</span>
+							<span class="hotkey-k">{{item.singer}}</span>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -102,6 +107,7 @@ export default {
 				this.searchState = true
 			}
 			else{
+				console.log(res.body.data)
 				this.searchResult = res.body.data
 				this.searchState = true
 			}
@@ -126,7 +132,8 @@ export default {
 	box-shadow: 0 0 10px #DDD;
 	width: 100%;
 	margin: 0 auto;
-	flex-wrap:wrap
+	flex-wrap:wrap;
+	font-size: 14px;
 }
 .search-input {
 	flex-grow: 1;
@@ -156,7 +163,7 @@ export default {
 	height: 100%;
 	border: none;
 	background: #eee;
-	font-size: medium;
+	font-size: 14px;
 	flex-grow: 1;
 	border-radius: 5px;
 	outline: none;
@@ -179,10 +186,16 @@ export default {
 	height: 40px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
 	align-items: center;
 	padding: 0 10px;
 	cursor: pointer;
+}
+.hot-key ul li .key-info {
+	display: flex;
+	flex-direction: column;
+}
+.hot-key ul li .key-info :nth-child(2){
+	font-size: 5px;
 }
 .hot-key ul li .hotkey-index {
 	padding-right: 10px;
@@ -192,5 +205,8 @@ export default {
 }
 .result-warp{
 	width: 100%
+}
+.result{
+	margin: 2px;
 }
 </style>
