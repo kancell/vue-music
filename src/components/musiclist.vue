@@ -60,6 +60,7 @@ export default {
 		musicSelect(item){
 			//直接修改state是否合适？
 			this.$store.state.nowPlaying = item
+			this.$store.state.playList = this.musicList.songlist
 			this.$store.commit('play')
 			this.$store.dispatch('albummid' ,item.mid)
 		}

@@ -67,7 +67,7 @@ export default {
 	},
 	created () {
 		this.$store.dispatch('getHotKey').then((response) => {
-			this.hotkey = response.data.data.hotkey.slice(0, 5)
+			this.hotkey = response.data.data.hotkey.slice(0, 6)
 		})
 	},
 	methods: {
