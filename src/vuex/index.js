@@ -8,7 +8,7 @@ const state = {
     scrollbar: 0,
     nowPlaying: '',
     playList: [],
-    searchShow: false,
+    detailShow: false,
     defImg: require('../assets/Vue_Music_Blur.png'),
     albumImg:null
 }
@@ -26,9 +26,6 @@ const mutations = {
     albummid (state, data) {
         state.albumImg = data
     },
-    searchShow (state){
-        state.searchShow = !state.searchShow
-    }
 }
 
 const getters = {
@@ -37,19 +34,16 @@ const getters = {
     },
     nowPlayInfo: state => {
         if(typeof state.nowPlaying == 'undefined'){
-            return ['name' ,state.defImg]
+            return ['name' ,state.defImg, state.nowPlaying.id]
         }
 		if(state.albumImg == undefined || null){
-			return [state.nowPlaying.name, state.defImg]
+			return [state.nowPlaying.name, state.defImg, state.nowPlaying.id]
 		}
         //可能出现null或undefined，都为错误，故不使用 ===
-        return [state.nowPlaying.name, "https://y.gtimg.cn/music/photo_new/T002R500x500M000"+state.albumImg+".jpg"]
+        return [state.nowPlaying.name, "https://y.gtimg.cn/music/photo_new/T002R500x500M000"+state.albumImg+".jpg", state.nowPlaying.id]
     },
     playState: state => {
         return state.playState
-    },
-    searchShow: state => {
-        return state.searchShow 
     }
 }
 //state,mutations,action等分模块处理

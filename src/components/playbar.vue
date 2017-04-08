@@ -7,7 +7,9 @@
 				@timeupdate="updateTime"
 				@ended="playContinue"
 				></audio>
-			<div class="play-bar-image-container">
+			<div class="play-bar-image-container"
+				@click="detailChange"
+			>
 				<img class="play-bar-image" :src="nowPlayInfo[1]">
 			</div>
 			<p class="play-bar-text">{{nowPlayInfo[0]}}</p>
@@ -23,6 +25,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
 	data () {
 		return {
@@ -33,13 +36,15 @@ export default {
 	computed: {
 		...mapGetters(['nowPlaySrc','nowPlayInfo','playState']),
 		...mapMutations(['play', 'pause']),
+		...mapState({
+				detailShow: state => state.detailShow
+		}),
 		defaultIcon (){
 			if(this.nowPlayInfo[1] == undefined){
 				return '../assets/Vue_Music_Blur.png'
 			}
 		}
 		//将vuex中属性映射至组件中，通过getter获取状态，mutations更改状态
-
 	},
 	mounted () {
 		/*this.$store.dispatch('getRecommands').then((response) => {
@@ -58,6 +63,9 @@ export default {
 		//setTimeout 0将watch回调置于下一个周期触发
 	},
 	methods: {
+		detailChange(event) {
+			this.$store.state.detailShow = true
+		},
 		updateTime(event) {
 		//	console.log(event.target.currentTime)
 		},

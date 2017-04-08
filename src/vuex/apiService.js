@@ -41,7 +41,7 @@ const actions = {
     getHotKey({commit}){
         return apiService(API.hotkey)()
     },
-    search({}, key){
+    search({commit}, key){
         return apiService(API.search)(key)
     },
 }

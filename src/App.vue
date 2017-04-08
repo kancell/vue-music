@@ -1,16 +1,19 @@
 <template>
   	<div id="app">
-		<keep-alive>
-			<router-view></router-view>
+		<keep-alive >
+			<router-view  v-show="!detailShow"></router-view>
 		</keep-alive>
-		<playBar></playBar>
+		<musicdetail v-show="detailShow"></musicdetail>
+		<playBar v-show="!detailShow"></playBar>
   	</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import recommand from './components/recommand.vue'
 import playBar from './components/playbar.vue'
+import musicdetail from './components/musicdetail.vue'
 export default {
 	data () {
 		return {
@@ -19,21 +22,24 @@ export default {
 	},
 	components: {
 		playBar,
-		recommand
+		recommand,
+		musicdetail
 	},
-	/*computed: {
-		...mapGetters(['showState'])
-	},*/
+	computed: {
+		...mapState({
+				detailShow: state => state.detailShow
+		})
+	},
 	created () {
 
 	},
 	mounted () {
-		this.$store.dispatch('getRecommands').then((response) => {
-			 
-		})
+
 	},
 	methods: {
-		
+		detailChange(event) {
+			this.detailShow = true
+		},
 	}	
 }
 </script>

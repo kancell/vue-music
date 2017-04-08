@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import recommand from '@/components/recommand'
 import musiclist from '@/components/musiclist'
 import search from '@/components/search'
+import musicdetail from '@/components/musicdetail'
 
 Vue.use(Router)
 const routes =  [
@@ -21,6 +22,11 @@ const routes =  [
 			path: '/search', 
 			name: 'search',
 			component: search
+		},
+		{
+			path: 'musicdetail',
+			name: 'musicdetail',
+			component: musicdetail
 		}
 		
   ]
