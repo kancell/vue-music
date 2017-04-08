@@ -75,7 +75,6 @@ export default {
 	flex-wrap: wrap;
 }*/
 .hot-list  .list-item {
-	display: flex;
 	width: 50%;
 	cursor: pointer;
 }
