@@ -34,7 +34,7 @@ const actions = {
         }).then((response) => {
             commit('albummid', response.data.albummid)
         }, (err) => {
-             console.log(err)
+            commit('albummid', 'default')
         })  
     },
     //提交入mutations中以备再次处理

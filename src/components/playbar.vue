@@ -10,7 +10,7 @@
 			<div class="play-bar-image-container"
 				@click="detailChange"
 			>
-				<img class="play-bar-image" :src="nowPlayInfo[1]">
+				<img class="play-bar-image" :src="defImg || nowPlayInfo[1]">
 			</div>
 			<p class="play-bar-text">{{nowPlayInfo[0]}}</p>
 			<img class="play-bar-button"
@@ -29,6 +29,7 @@ import { mapState } from 'vuex'
 export default {
 	data () {
 		return {
+			defImg: require('../assets/Vue_Music_Blur.png'),
 			iconPlay: require('../assets/icon-play.png'),
 			iconPause: require('../assets/icon-pause.png'),
         }
@@ -39,11 +40,6 @@ export default {
 		...mapState({
 				detailShow: state => state.detailShow
 		}),
-		defaultIcon (){
-			if(this.nowPlayInfo[1] == undefined){
-				return '../assets/Vue_Music_Blur.png'
-			}
-		}
 		//将vuex中属性映射至组件中，通过getter获取状态，mutations更改状态
 	},
 	mounted () {
@@ -53,6 +49,7 @@ export default {
 	},
 	watch: {
 		nowPlaySrc: function (){
+			this.defImg = false
 			setTimeout(() => {
 					this.$store.commit('play')
 					this.$refs.music.play()

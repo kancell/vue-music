@@ -1,6 +1,10 @@
 <template>
 	<div id="music-detail">
 		<p @click="detailChange">返回</p>
+		<div class="img-detail">	
+			<img :src='nowPlayInfo[1]'>
+		</div>
+		<p class="music-name">{{nowPlayInfo[0]}}</p>
 		<div class="music-ctrl">
 			<ul>
 				<li>
@@ -51,6 +55,43 @@ export default {
     height: 100%;
     position: fixed;
     top: 0;
+	background: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
     z-index: 5;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between
+}
+#music-detail .music-ctrl {
+	display: flex;
+}
+#music-detail .music-ctrl ul {
+	display: flex;
+	margin: 0 auto;
+	justify-content: space-around;
+	width: 100%;
+}
+#music-detail .music-ctrl ul li {
+	list-style: none;
+}
+#music-detail .music-ctrl ul li img {
+	width: 40px;
+}
+#music-detail .music-name {
+	margin: 0 auto
+}
+#music-detail .img-detail {
+	width: 100%;
+	display: flex;
+}
+#music-detail .img-detail img {
+	width: 59%;
+	height: 59%;
+	margin: 0 auto;
+	border-radius: 50%;
+	animation:rotating 50s linear infinite
+}
+@keyframes rotating {
+	from {transform: rotate(0)}
+	to {transform: rotate(360deg)}
 }
 </style>

@@ -36,7 +36,7 @@ const getters = {
         if(typeof state.nowPlaying == 'undefined'){
             return ['name' ,state.defImg, state.nowPlaying.id]
         }
-		if(state.albumImg == undefined || null){
+		if(state.albumImg == 'default'){
 			return [state.nowPlaying.name, state.defImg, state.nowPlaying.id]
 		}
         //可能出现null或undefined，都为错误，故不使用 ===

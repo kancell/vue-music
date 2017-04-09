@@ -49,7 +49,7 @@ export default {
 	margin: 0;
 	padding: 0;
 }
-#play-bar, #search-bar, body, #app,html{
+#play-bar, #search-bar, body, #app, #music-detail, html{
 	width: 68vh;
 	margin: 0 auto
 }
