@@ -8,16 +8,20 @@
 		<div class="music-ctrl">
 			<ul>
 				<li>
-					<img src="../assets/icon-like.png">
+					<img src="../assets/icon-like.png"
+						@click="like">
 				</li>
 				<li>
-					<img src="../assets/icon-shangyiqu.png">
+					<img src="../assets/icon-shangyiqu.png"
+						@click="playBefore">
 				</li>
 				<li>
-					<img :src="playState?iconPause:iconPlay">
+					<img :src="playState?iconPause:iconPlay"
+						@click="tapButton">
 				</li>
 				<li>
-					<img src="../assets/icon-xiayiqu.png">
+					<img src="../assets/icon-xiayiqu.png"
+						@click="playNext">
 				</li>
 				<li>
 					<img src="../assets/icon-list.png">
@@ -29,6 +33,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
 	name: "musicdetail",
 	data () {
@@ -40,6 +45,9 @@ export default {
 	},
 	computed: {
 		...mapGetters(['nowPlaySrc','nowPlayInfo','playState']),
+		...mapState({
+				nowPlaying: state => state.nowPlaying
+		}),
 	},
 	created () {
 
@@ -51,8 +59,28 @@ export default {
 		//获得图片后，替换初始图片
 	},
 	methods: {
-		detailChange () {
+		detailChange (){
 			this.$store.state.detailShow = false
+		},
+		tapButton (event){		
+			if(this.playState){
+				this.$store.commit('pause')
+			}
+			else{		
+				this.$store.commit('play')
+			}		
+		},
+		like (){
+			this.$store.state.likeList.push(this.nowPlaying)
+			console.log(this.$store.likeList)
+		},
+		playNext (){
+			this.$store.commit('playNext')
+			this.$store.dispatch('albummid' ,this.nowPlaying.mid)
+		},
+		playBefore (){
+			this.$store.commit('playBefore')
+			this.$store.dispatch('albummid' ,this.nowPlaying.mid)
 		}
 	}
 }

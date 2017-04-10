@@ -1,5 +1,6 @@
 <template>
   	<div id="app">
+		<likelist></likelist>
 		<keep-alive >
 			<router-view  v-show="!detailShow"></router-view>
 		</keep-alive>
@@ -14,6 +15,7 @@ import { mapState } from 'vuex'
 import recommand from './components/recommand.vue'
 import playBar from './components/playbar.vue'
 import musicdetail from './components/musicdetail.vue'
+import likelist from './components/likelist.vue'
 export default {
 	data () {
 		return {
@@ -23,7 +25,8 @@ export default {
 	components: {
 		playBar,
 		recommand,
-		musicdetail
+		musicdetail,
+		likelist
 	},
 	computed: {
 		...mapState({

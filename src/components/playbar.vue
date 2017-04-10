@@ -40,8 +40,8 @@ export default {
 		...mapGetters(['nowPlaySrc','nowPlayInfo','playState']),
 		...mapMutations(['play', 'pause']),
 		...mapState({
-				detailShow: state => state.detailShow,
-				nowPlaying: state => state.nowPlaying
+			detailShow: state => state.detailShow,
+			nowPlaying: state => state.nowPlaying
 		}),
 		//将vuex中属性映射至组件中，通过getter获取状态，mutations更改状态
 	},

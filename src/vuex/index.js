@@ -9,6 +9,8 @@ const state = {
     nowPlaying: '',
     nowIndex: 0,
     playList: [],
+    likeList: [],
+    likeState: false,
     detailShow: false,
     defImg: require('../assets/Vue_Music_Blur.png'),
     albumImg:null
@@ -32,6 +34,10 @@ const mutations = {
     playNext (state) {
         state.nowPlaying = state.playList[state.nowIndex+1]
         state.nowIndex += 1
+    },
+    playBefore (state) {
+        state.nowPlaying = state.playList[state.nowIndex-1]
+        state.nowIndex -= 1
     }
 }
 
