@@ -7,12 +7,15 @@ const state = {
     playState: false,
     scrollbar: 0,
     nowPlaying: '',
+    nowIndex: 0,
     playList: [],
     detailShow: false,
     defImg: require('../assets/Vue_Music_Blur.png'),
     albumImg:null
 }
-
+function sd(){
+    console.log('asds')
+}
 const mutations = {
     play (state) {
         state.playState = true
@@ -26,6 +29,10 @@ const mutations = {
     albummid (state, data) {
         state.albumImg = data
     },
+    playNext (state) {
+        state.nowPlaying = state.playList[state.nowIndex+1]
+        state.nowIndex += 1
+    }
 }
 
 const getters = {

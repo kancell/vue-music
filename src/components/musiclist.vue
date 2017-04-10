@@ -4,7 +4,7 @@
 		<ul>
 			<li class="music-item"
 				v-for="(item, index) in musicList.songlist"
-				@click="musicSelect(item)"
+				@click="musicSelect(item, index)"
 				>
 				<div class="music-info">
 					<div class="music-name">
@@ -57,9 +57,10 @@ export default {
 		previous (){
 			this.$router.go(-1)
 		},
-		musicSelect(item){
+		musicSelect(item, index){
 			//直接修改state是否合适？
 			this.$store.state.nowPlaying = item
+			this.$store.state.nowIndex = index
 			this.$store.state.playList = this.musicList.songlist
 			this.$store.commit('play')
 			this.$store.dispatch('albummid' ,item.mid)

@@ -5,18 +5,19 @@
 				ref="music"
 				:src='nowPlaySrc'
 				@timeupdate="updateTime"
-				@ended="playContinue"
-				></audio>
+				@ended="playContinue">
+			</audio>
 			<div class="play-bar-image-container"
-				@click="detailChange"
-			>
+				@click="detailChange">
 				<img class="play-bar-image" :src="defImg || nowPlayInfo[1]">
 			</div>
 			<p class="play-bar-text">{{nowPlayInfo[0]}}</p>
 			<img class="play-bar-button"
 				:src="playState?iconPause:iconPlay"
-				@click="tapButton"
-				>
+				@click="tapButton">
+			<img class="play-bar-button"
+				@click="playNext"
+				:src="next">
 		</div>
 		<div class="sub-bar"></div>
 	</div>
@@ -32,13 +33,15 @@ export default {
 			defImg: require('../assets/Vue_Music_Blur.png'),
 			iconPlay: require('../assets/icon-play.png'),
 			iconPause: require('../assets/icon-pause.png'),
+			next: require('../assets/icon-xiayiqu.png')
         }
 	},
 	computed: {
 		...mapGetters(['nowPlaySrc','nowPlayInfo','playState']),
 		...mapMutations(['play', 'pause']),
 		...mapState({
-				detailShow: state => state.detailShow
+				detailShow: state => state.detailShow,
+				nowPlaying: state => state.nowPlaying
 		}),
 		//将vuex中属性映射至组件中，通过getter获取状态，mutations更改状态
 	},
@@ -80,6 +83,10 @@ export default {
 				this.$refs.music.play()
 				this.$store.commit('play')
 			}		
+		},
+		playNext (){
+			this.$store.commit('playNext')
+			this.$store.dispatch('albummid' ,this.nowPlaying.mid)
 		}
 	}	
 }

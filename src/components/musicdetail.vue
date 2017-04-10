@@ -2,7 +2,7 @@
 	<div id="music-detail">
 		<p @click="detailChange">返回</p>
 		<div class="img-detail">	
-			<img :src='nowPlayInfo[1]'>
+			<img :src="defImg || nowPlayInfo[1]">
 		</div>
 		<p class="music-name">{{nowPlayInfo[0]}}</p>
 		<div class="music-ctrl">
@@ -33,6 +33,7 @@ export default {
 	name: "musicdetail",
 	data () {
 		return {
+			defImg: require('../assets/Vue_Music_Blur.png'),
 			iconPlay: require('../assets/icon-play.png'),
 			iconPause: require('../assets/icon-pause.png'),
 		};
@@ -42,6 +43,12 @@ export default {
 	},
 	created () {
 
+	},
+	watch: {
+		nowPlaySrc: function (){
+			this.defImg = false
+		}
+		//获得图片后，替换初始图片
 	},
 	methods: {
 		detailChange () {

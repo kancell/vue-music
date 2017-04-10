@@ -13,8 +13,8 @@ function apiService(api){
 //axios不支持jsonp，我也很绝望啊
 //处理异步请求，第一个参数为api，第二个参数为id，传入箭头函数中，默认为null
 const actions = {
-    test ({commit}) {
-        console.log('ok')
+    test (data) {
+        console.log(data)
     },
     getRankSongs ({commit}, id){
         return apiService(API.rank_songs)(id)
