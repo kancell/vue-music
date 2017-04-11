@@ -1,5 +1,7 @@
 <template>
-	<div>
+	<div id="music-list">
+		<searchbar></searchbar>
+		<p>我的最爱</p>
 		<ul>
 			<li class="music-item"
 				v-for="(item, index) in likeList"
@@ -28,6 +30,7 @@
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapState } from 'vuex'
+import searchbar from './searchbar.vue'
 export default {
 	name: "likelist",
 	data () {
@@ -35,16 +38,33 @@ export default {
 
 		};
   	},
+	components: {
+		searchbar
+	},
 	computed: {
 		...mapState({
 			likeList: state => state.likeList
 		}),
+	},
+	methods: {
+		musicSelect(item, index){
+			//直接修改state是否合适？
+			this.$store.state.nowPlaying = item
+			this.$store.state.nowIndex = index
+			this.$store.state.playList = this.likeList
+			this.$store.commit('play')
+			this.$store.dispatch('albummid' ,item.mid)
+		}
 	}
 }
 </script>
 <style lang="css" scoped>
 #music-list {
 	background: #fff;
+}
+#music-list p {
+	margin: 6px;
+	font-size: 14px;
 }
 #music-list .music-item{
 	margin: 5px 0 0 5px;

@@ -24,7 +24,10 @@
 						@click="playNext">
 				</li>
 				<li>
-					<img src="../assets/icon-list.png">
+					<router-link :to="{name: 'likelist'}">
+						<img src="../assets/icon-list.png"
+						@click="change">
+					</router-link>
 				</li>
 			</ul>
 		</div>
@@ -81,17 +84,20 @@ export default {
 		playBefore (){
 			this.$store.commit('playBefore')
 			this.$store.dispatch('albummid' ,this.nowPlaying.mid)
+		},
+		change (){
+			this.$store.state.detailShow = false
 		}
 	}
 }
 </script>
 <style lang="css" scoped>
 #music-detail {
-    height: 100%;
-    position: fixed;
-    top: 0;
+	height: 100%;
+	position: fixed;
+	top: 0;
 	background: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
-    z-index: 5;
+	z-index: 5;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between

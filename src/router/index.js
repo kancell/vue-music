@@ -5,7 +5,7 @@ import recommand from '@/components/recommand'
 import musiclist from '@/components/musiclist'
 import search from '@/components/search'
 import musicdetail from '@/components/musicdetail'
-
+import likelist from '@/components/likelist.vue'
 Vue.use(Router)
 const routes =  [
 		{
@@ -24,18 +24,16 @@ const routes =  [
 			component: search
 		},
 		{
-			path: 'musicdetail',
-			name: 'musicdetail',
-			component: musicdetail
+			path: '/likelist',
+			name: 'likelist',
+			component: likelist
 		}
 		
   ]
 export default new Router({
-		//mode: 'history',
-		//saveScrollPostion: 'true',
-		routes,
-		scrollBehavior (to, from, savedPosition) {
-			return savedPosition || { x: 0, y: 0 }
-		}
+	routes,
+	scrollBehavior (to, from, savedPosition) {
+		return savedPosition || { x: 0, y: 0 }
+	}
 })
 

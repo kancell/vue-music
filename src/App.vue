@@ -1,12 +1,11 @@
 <template>
-  	<div id="app">
-		<likelist></likelist>
-		<keep-alive >
+	<div id="app">
+		<keep-alive>
 			<router-view  v-show="!detailShow"></router-view>
 		</keep-alive>
 		<musicdetail v-show="detailShow"></musicdetail>
 		<playBar v-show="!detailShow"></playBar>
-  	</div>
+	</div>
 </template>
 
 <script>
@@ -20,7 +19,7 @@ export default {
 	data () {
 		return {
 
-        }
+		}
 	},
 	components: {
 		playBar,

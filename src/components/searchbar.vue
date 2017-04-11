@@ -5,7 +5,7 @@
                 <img src="../assets/icon-back.png">
             </div>
             <div class="set">
-                <div>
+                <div @click="like">
                     <img src="../assets/icon-list.png">
                 </div>		
                 <div @click="search">
@@ -30,6 +30,9 @@ export default {
         },
         search () {
             this.$router.push({name:'search'})
+        },
+        like () {
+            this.$router.push({name:'likelist'})
         }
     }
 }
