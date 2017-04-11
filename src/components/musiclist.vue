@@ -1,7 +1,10 @@
 <template>
 	<div id="music-list">
 		<searchbar></searchbar>
-		<ul>
+		<div class="loading" v-if="loading">
+			<p>loading...</p>
+		</div>
+		<ul v-if="!loading">
 			<li class="music-item"
 				v-for="(item, index) in musicList.songlist"
 				@click="musicSelect(item, index)"
@@ -32,23 +35,30 @@ export default {
 	name: "musiclist",
 	data () {
 		return {
-			musicList:[]
+			musicList:[],
+			loading: true
 		}
 	},
 	components: {
 		searchbar
 	},
-	beforeCreated () {
+	Created () {	
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
 			this.musicList = res.data.cdlist[0]
-		})		
+			this.loading = false
+		})	
 		document.body.scrollTop = 0
 	},
-	destroyed () {
+	beforeRouteLeave (to, from, next) {
+		this.loading = true
+		next()
 	},
+	//过渡效果，离开组件时loading为true，进入组件，触发created钩子，数据处理完成后，
+	//loading改为false，显示数据
 	activated () {
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
 			this.musicList = res.data.cdlist[0]
+			this.loading = false
 		})
 		document.body.scrollTop = 0
 	},
@@ -69,6 +79,16 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+.loading {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100vh
+}
+.loading p {
+	margin: 0 auto;
+	padding-bottom: 39%;
+}
 #music-list {
 	background: #fff;
 }

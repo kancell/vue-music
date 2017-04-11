@@ -7,7 +7,8 @@ import search from '@/components/search'
 import musicdetail from '@/components/musicdetail'
 import likelist from '@/components/likelist.vue'
 Vue.use(Router)
-const routes =  [
+const routes =  
+	[
 		{
 			path: '/',
 			name: 'recommand',
@@ -27,9 +28,9 @@ const routes =  [
 			path: '/likelist',
 			name: 'likelist',
 			component: likelist
-		}
-		
-  ]
+		}		
+	]
+	
 export default new Router({
 	routes,
 	scrollBehavior (to, from, savedPosition) {

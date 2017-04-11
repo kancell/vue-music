@@ -45,10 +45,10 @@ export default {
 		...mapState({
 			likeList: state => state.likeList
 		}),
+		//数据预备存储进localstorage中
 	},
 	methods: {
 		musicSelect(item, index){
-			//直接修改state是否合适？
 			this.$store.state.nowPlaying = item
 			this.$store.state.nowIndex = index
 			this.$store.state.playList = this.likeList

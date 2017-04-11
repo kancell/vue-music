@@ -16,8 +16,8 @@
 						</div>
 					</div>
 					<div class="list-info">
-						<p class="">{{item.author}}</p>
 						<p class="">{{item.dissname}}</p>
+						<p class="">{{item.author}}</p>
 					</div>
 				</router-link>
 			</div>
@@ -61,7 +61,7 @@ export default {
 	box-shadow: 0 0 10px #DDD;
 	width: 100%;
 	margin: 0 auto;
-	flex-wrap:wrap
+	flex-wrap:wrap;
 }
 /*
 .hotlist .list-title{
@@ -106,4 +106,9 @@ export default {
 	font-size: 14px;
 	margin-bottom: 10px;
 }  
+.hot-list .list-info p {
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 </style>

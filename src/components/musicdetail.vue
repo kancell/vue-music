@@ -1,6 +1,8 @@
 <template>
 	<div id="music-detail">
-		<p @click="detailChange">返回</p>
+		<div @click="detailChange" class="ret">
+			<img src="../assets/icon-back.png">
+		</div>
 		<div class="img-detail">	
 			<img :src="defImg || nowPlayInfo[1]">
 		</div>
@@ -134,5 +136,10 @@ export default {
 @keyframes rotating {
 	from {transform: rotate(0)}
 	to {transform: rotate(360deg)}
+}
+.ret img{
+	width: 24px;
+	height: 24px;
+	margin: 9px;	
 }
 </style>
