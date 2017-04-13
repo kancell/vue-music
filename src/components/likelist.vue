@@ -1,7 +1,6 @@
 <template>
 	<div id="music-list">
-		<searchbar></searchbar>
-		<p>我的最爱</p>
+		<returnbar string="我的最爱"></returnbar>
 		<ul>
 			<li class="music-item"
 				v-for="(item, index) in likeList"
@@ -30,7 +29,7 @@
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapState } from 'vuex'
-import searchbar from './searchbar.vue'
+import returnbar from './returnbar.vue'
 export default {
 	name: "likelist",
 	data () {
@@ -39,7 +38,7 @@ export default {
 		};
   	},
 	components: {
-		searchbar
+		returnbar
 	},
 	computed: {
 		...mapState({

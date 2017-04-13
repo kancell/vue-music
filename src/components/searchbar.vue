@@ -1,13 +1,11 @@
 <template>
     <div>
         <div id='search-bar'>
-            <div class="ret" @click="previous">
-                <img src="../assets/icon-back.png">
+            <div class="ret">
+                <p @click="like">我的</p>
+                <p @click="main">乐库</p>
             </div>
             <div class="set">
-                <div @click="like">
-                    <img src="../assets/icon-list.png">
-                </div>		
                 <div @click="search">
                     <img src="../assets/icon-search.png">
                 </div>
@@ -32,7 +30,10 @@ export default {
             this.$router.push({name:'search'})
         },
         like () {
-            this.$router.push({name:'likelist'})
+            this.$router.push({name:'user'})
+        },
+        main () {
+             this.$router.push({name:'main'})
         }
     }
 }
@@ -45,12 +46,16 @@ export default {
     top: 0;
     z-index: 10;
     justify-content: space-between;
-	background: whitesmoke
+    background: #fff;
+	border-bottom: 1px solid ghostwhite;
 }  
 #search-bar div {
     display: flex;
     flex-direction:row-reverse;
 } 
+#search-bar .set {
+    margin-right: 12px;
+}
 #search-bar .set img{
 	width: 25px;
 	height: 25px;
@@ -61,7 +66,17 @@ export default {
 	height: 16px;
 	margin: 6px;	
 }
+#search-bar .ret {
+    display: flex;
+    width: 33%;
+    justify-content: space-around;
+    align-items: center;
+}
+#search-bar .ret p {
+    color: gray;
+    font-size: 15px;
+}
 .sub-bar{
-	height: 35px;
+	height: 34px;
 }  
 </style>

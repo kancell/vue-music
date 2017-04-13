@@ -26,7 +26,7 @@
 						@click="playNext">
 				</li>
 				<li>
-					<router-link :to="{name: 'likelist'}">
+					<router-link :to="{name: 'user'}">
 						<img src="../assets/icon-list.png"
 						@click="change">
 					</router-link>

@@ -1,14 +1,14 @@
 <template>
 	<div id="music-list">
-		<searchbar></searchbar>
+		<returnbar string="歌单详情"></returnbar>
 		<div class="loading" v-if="loading">
 			<p>loading...</p>
 		</div>
 		<ul v-if="!loading">
 			<li class="music-item"
 				v-for="(item, index) in musicList.songlist"
-				@click="musicSelect(item, index)"
-				>
+				@click="musicSelect(item, index)">
+				<div class="music-index">{{index+1}}</div>
 				<div class="music-info">
 					<div class="music-name">
 						{{item.name}}
@@ -29,7 +29,7 @@
 	</div>
 </template>
 <script>
-import searchbar from './searchbar.vue'
+import returnbar from './returnbar.vue'
 import { mapGetters } from 'vuex'
 export default {
 	name: "musiclist",
@@ -40,7 +40,7 @@ export default {
 		}
 	},
 	components: {
-		searchbar
+		returnbar
 	},
 	Created () {	
 		this.$store.dispatch('getCDList', this.$route.params.id).then((res) => {
@@ -92,16 +92,27 @@ export default {
 #music-list {
 	background: #fff;
 }
-#music-list .music-item{
+#music-list .music-item {
+	display: flex;
 	margin: 5px 0 0 5px;
+	border-bottom: 1px solid ghostwhite;
 }
-#music-list li:nth-child(2n){
-	background: gainsboro
-}
+
 .music-info {
 	font-size: 14px;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.music-index {
+	font-size: 9px;
+	margin: 4px 10px 4px 10px
 }
 .music-singer {
 	font-size: 5px;
+	margin: 4px 4px 4px 0;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 </style>

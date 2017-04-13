@@ -6,13 +6,15 @@ import musiclist from '@/components/musiclist'
 import search from '@/components/search'
 import musicdetail from '@/components/musicdetail'
 import likelist from '@/components/likelist.vue'
+import main from '@/components/main.vue'
+import user from '@/components/user.vue'
 Vue.use(Router)
 const routes =  
 	[
 		{
 			path: '/',
-			name: 'recommand',
-			component: recommand
+			name: 'main',
+			component: main
 		},
 		{
 			path: '/musiclist/:id',
@@ -23,6 +25,11 @@ const routes =
 			path: '/search', 
 			name: 'search',
 			component: search
+		},
+		{
+			path: '/user',
+			name: 'user',
+			component: user
 		},
 		{
 			path: '/likelist',

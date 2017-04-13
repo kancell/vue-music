@@ -1,6 +1,5 @@
 <template>
 	<div id="recommand">	
-		<searchbar></searchbar>
 		<div class="hot-list">
 			<div class="list-item" 
 				v-for="(item,index) in songList"
@@ -62,6 +61,7 @@ export default {
 	width: 100%;
 	margin: 0 auto;
 	flex-wrap:wrap;
+	justify-content: center;
 }
 /*
 .hotlist .list-title{
@@ -75,8 +75,9 @@ export default {
 	flex-wrap: wrap;
 }*/
 .hot-list  .list-item {
-	width: 50%;
+	width: 30%;
 	cursor: pointer;
+	margin: 2px;
 }
 .hot-list .list-item .list-img{
 	position: relative;
