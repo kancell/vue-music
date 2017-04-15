@@ -107,13 +107,13 @@ export default {
 				this.searchState = true
 			}
 			else{
-				console.log(res.body.data)
 				this.searchResult = res.body.data
 				this.searchState = true
 			}
 			//检查数据，如果数据为空，则显示已编好的错误信息
 		},
 		search () {
+			if(this.key == '') return
 			this.$store.dispatch('search', this.key).then((res) => {
 				this.check(res)
 			}, (error) => {

@@ -44,6 +44,11 @@ const actions = {
     search({commit}, key){
         return apiService(API.search)(key)
     },
+    getLyric({},id){
+        return Vue.http.jsonp('https://api.darlin.me/music/lyric/'+id+'/',{
+            jsonp:'callback'
+        })
+    }
 }
 
 export default actions

@@ -3,8 +3,11 @@
 		<div @click="detailChange" class="ret">
 			<img src="../assets/icon-back.png">
 		</div>
-		<div class="img-detail">	
-			<img :src="defImg || nowPlayInfo[1]">
+		<div class="lyric-img" @click='lyricChange'>
+			<div class="img-detail" v-show="!lyricState">	
+				<img :src="defImg || nowPlayInfo[1]">
+			</div>
+			<lyric :songid='nowPlayInfo[2]' v-show="lyricState"></lyric>
 		</div>
 		<p class="music-name">{{nowPlayInfo[0]}}</p>
 		<div class="music-ctrl">
@@ -39,6 +42,7 @@
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapState } from 'vuex'
+import lyric from './lyric.vue'
 export default {
 	name: "musicdetail",
 	data () {
@@ -46,16 +50,17 @@ export default {
 			defImg: require('../assets/Vue_Music_Blur.png'),
 			iconPlay: require('../assets/icon-play.png'),
 			iconPause: require('../assets/icon-pause.png'),
+			lyricState: false
 		};
+	},
+	components: {
+		lyric
 	},
 	computed: {
 		...mapGetters(['nowPlaySrc','nowPlayInfo','playState']),
 		...mapState({
 				nowPlaying: state => state.nowPlaying
 		}),
-	},
-	created () {
-
 	},
 	watch: {
 		nowPlaySrc: function (){
@@ -64,8 +69,12 @@ export default {
 		//获得图片后，替换初始图片
 	},
 	methods: {
+		lyricChange () {
+			this.lyricState = !this.lyricState
+		},
 		detailChange (){
 			this.$store.state.detailShow = false
+			this.lyricState = false
 		},
 		tapButton (event){		
 			if(this.playState){
@@ -95,8 +104,7 @@ export default {
 </script>
 <style lang="css" scoped>
 #music-detail {
-	height: 100%;
-	position: fixed;
+	height: 100vh;
 	top: 0;
 	background: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
 	z-index: 5;
@@ -117,7 +125,7 @@ export default {
 	list-style: none;
 }
 #music-detail .music-ctrl ul li img {
-	width: 40px;
+	width: 38px;
 }
 #music-detail .music-name {
 	margin: 0 auto
@@ -141,5 +149,9 @@ export default {
 	width: 24px;
 	height: 24px;
 	margin: 9px;	
+}
+.lyric-img {
+
+
 }
 </style>
