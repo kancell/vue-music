@@ -12,11 +12,9 @@ const state = {
     likeList: [],
     likeState: false,
     detailShow: false,
+    andankShow: false, //recommand show or rank show
     defImg: require('../assets/Vue_Music_Blur.png'),
     albumImg:null
-}
-function sd(){
-    console.log('asds')
 }
 const mutations = {
     play (state) {
@@ -57,6 +55,9 @@ const getters = {
     },
     playState: state => {
         return state.playState
+    },
+    andankShow: state => {
+        return state.andankShow
     }
 }
 //state,mutations,action等分模块处理

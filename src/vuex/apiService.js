@@ -16,6 +16,9 @@ const actions = {
     test (data) {
         console.log(data)
     },
+    getRankList({}){
+        return apiService(API.rank_list)()
+    },
     getRankSongs ({commit}, id){
         return apiService(API.rank_songs)(id)
     },

@@ -1,6 +1,7 @@
 <template>
-	<div id="recommand">	
+	<div id="recommand">
 		<div class="hot-list">
+			<andank></andank>
 			<div class="list-item" 
 				v-for="(item,index) in songList"
 				>
@@ -26,6 +27,7 @@
 <script>
 //import { mapGetters } from 'vuex'
 import searchbar from './searchbar.vue'
+import andank from './andank.vue'
 export default {
 	name: 'recommand',
 	data () {
@@ -34,7 +36,8 @@ export default {
 		}
 	},
 	components: {
-		searchbar
+		searchbar,
+		andank
 	},
 	created () {
 		this.$store.dispatch('getRecommands').then((res) => {

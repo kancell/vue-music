@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import recommand from '@/components/recommand'
 import musiclist from '@/components/musiclist'
 import search from '@/components/search'
